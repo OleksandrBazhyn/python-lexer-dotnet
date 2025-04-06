@@ -1,0 +1,183 @@
+<import, RESERVED>
+<webbrowser, IDENTIFIER>
+<import, RESERVED>
+<telebot, IDENTIFIER>
+<TOKEN, IDENTIFIER>
+Error: Unrecognized token '=' at position 44
+<'7111111111111111111111JJ111111111111111111111111111111111', STRING>
+<bot, IDENTIFIER>
+Error: Unrecognized token '=' at position 113
+<telebot.TeleBot, IDENTIFIER>
+<(, OPERATOR>
+<TOKEN, IDENTIFIER>
+<), OPERATOR>
+<# Message Handlers, COMMENT>
+<# Commands, COMMENT>
+<@, OPERATOR>
+<bot.message_handler, IDENTIFIER>
+<(, OPERATOR>
+<commands, IDENTIFIER>
+Error: Unrecognized token '=' at position 202
+<[, OPERATOR>
+<'start', STRING>
+<], OPERATOR>
+<), OPERATOR>
+<def, RESERVED>
+<start, IDENTIFIER>
+<(, OPERATOR>
+<message, IDENTIFIER>
+<), OPERATOR>
+<:, OPERATOR>
+<markup, IDENTIFIER>
+Error: Unrecognized token '=' at position 247
+<telebot.types.InlineKeyboardMarkup, IDENTIFIER>
+<(, OPERATOR>
+<), OPERATOR>
+<markup.add, IDENTIFIER>
+<(, OPERATOR>
+<telebot.types.InlineKeyboardButton, IDENTIFIER>
+<(, OPERATOR>
+<text, IDENTIFIER>
+Error: Unrecognized token '=' at position 341
+<'Зв\'язатись з оператором', STRING>
+<,, OPERATOR>
+<callback_data, IDENTIFIER>
+Error: Unrecognized token '=' at position 383
+<'operator', STRING>
+<), OPERATOR>
+<), OPERATOR>
+<markup.add, IDENTIFIER>
+<(, OPERATOR>
+<telebot.types.InlineKeyboardButton, IDENTIFIER>
+<(, OPERATOR>
+<text, IDENTIFIER>
+Error: Unrecognized token '=' at position 452
+<'Перейти на сайт', STRING>
+<,, OPERATOR>
+<url, IDENTIFIER>
+Error: Unrecognized token '=' at position 475
+<'https://www.hive.report/', STRING>
+<), OPERATOR>
+<), OPERATOR>
+<bot.send_message, IDENTIFIER>
+<(, OPERATOR>
+<message.chat.id, IDENTIFIER>
+<,, OPERATOR>
+<f, IDENTIFIER>
+<'<em>Вітаю, {message.from_user.first_name}!</em>\nБудь ласка оберіть тип Вашого звернення', STRING>
+<,, OPERATOR>
+<parse_mode, IDENTIFIER>
+Error: Unrecognized token '=' at position 647
+<'html', STRING>
+<,, OPERATOR>
+<reply_markup, IDENTIFIER>
+Error: Unrecognized token '=' at position 668
+<markup, IDENTIFIER>
+<), OPERATOR>
+<@, OPERATOR>
+<bot.message_handler, IDENTIFIER>
+<(, OPERATOR>
+<commands, IDENTIFIER>
+Error: Unrecognized token '=' at position 709
+<[, OPERATOR>
+<'site', STRING>
+<], OPERATOR>
+<), OPERATOR>
+<def, RESERVED>
+<website, IDENTIFIER>
+<(, OPERATOR>
+<message, IDENTIFIER>
+<), OPERATOR>
+<:, OPERATOR>
+<bot.send_message, IDENTIFIER>
+<(, OPERATOR>
+<message.chat.id, IDENTIFIER>
+<,, OPERATOR>
+<'https://www.hive.report', STRING>
+<), OPERATOR>
+<webbrowser.open, IDENTIFIER>
+<(, OPERATOR>
+<'https://www.hive.report', STRING>
+<), OPERATOR>
+<# Files, COMMENT>
+<@, OPERATOR>
+<bot.message_handler, IDENTIFIER>
+<(, OPERATOR>
+<content_types, IDENTIFIER>
+Error: Unrecognized token '=' at position 903
+<[, OPERATOR>
+<'photo', STRING>
+<], OPERATOR>
+<), OPERATOR>
+<def, RESERVED>
+<get_photo, IDENTIFIER>
+<(, OPERATOR>
+<message, IDENTIFIER>
+<), OPERATOR>
+<:, OPERATOR>
+<bot.send_message, IDENTIFIER>
+<(, OPERATOR>
+<message.chat.id, IDENTIFIER>
+<,, OPERATOR>
+<'Дякую за знімок!', STRING>
+<), OPERATOR>
+<# User Message, COMMENT>
+<@, OPERATOR>
+<bot.message_handler, IDENTIFIER>
+<(, OPERATOR>
+<), OPERATOR>
+<def, RESERVED>
+<hello, IDENTIFIER>
+<(, OPERATOR>
+<message, IDENTIFIER>
+<), OPERATOR>
+<:, OPERATOR>
+<if, RESERVED>
+<message.text.lower, IDENTIFIER>
+<(, OPERATOR>
+<), OPERATOR>
+Error: Unrecognized token '=' at position 1091
+Error: Unrecognized token '=' at position 1092
+<'привіт', STRING>
+<:, OPERATOR>
+<bot.send_message, IDENTIFIER>
+<(, OPERATOR>
+<message.chat.id, IDENTIFIER>
+<,, OPERATOR>
+<f, IDENTIFIER>
+<'Привіт, {message.from_user.first_name}!', STRING>
+<), OPERATOR>
+<elif, IDENTIFIER>
+<message.text.lower, IDENTIFIER>
+<(, OPERATOR>
+<), OPERATOR>
+Error: Unrecognized token '=' at position 1224
+Error: Unrecognized token '=' at position 1225
+<'пока', STRING>
+<:, OPERATOR>
+<bot.send_message, IDENTIFIER>
+<(, OPERATOR>
+<message.chat.id, IDENTIFIER>
+<,, OPERATOR>
+<f, IDENTIFIER>
+<'Гарного дня, {message.from_user.first_name}!', STRING>
+<), OPERATOR>
+<print, IDENTIFIER>
+<(, OPERATOR>
+<"Bot is Started.", STRING>
+<), OPERATOR>
+<bot.infinity_polling, IDENTIFIER>
+<(, OPERATOR>
+<), OPERATOR>
+<ii, IDENTIFIER>
+Error: Unrecognized token '=' at position 1387
+<2.11, NUMBER>
+<x, IDENTIFIER>
+Error: Unrecognized token '=' at position 1397
+<0x111ab, NUMBER>
+<a, IDENTIFIER>
+Error: Unrecognized token '=' at position 1410
+<17, NUMBER>
+<o, IDENTIFIER>
+Error: Unrecognized token '=' at position 1418
+Error: Unrecognized token '0x11abj' at position 1426

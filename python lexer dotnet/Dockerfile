@@ -11,6 +11,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["python lexer dotnet/python lexer dotnet.csproj", "python lexer dotnet/"]
+COPY ["python lexer dotnet/python-code-for-analysis/script.py", "python lexer dotnet/"]
 RUN dotnet restore "./python lexer dotnet/python lexer dotnet.csproj"
 COPY . .
 WORKDIR "/src/python lexer dotnet"

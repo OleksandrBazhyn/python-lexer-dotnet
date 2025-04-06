@@ -58,12 +58,12 @@ internal class Program
             }
         }
 
-        WriteToFile("../result/output.txt", result.ToString());
+        WriteToFile("./result/output.txt", result.ToString());
     }
 
     private static void Main(string[] args)
     {
-        string filePath = args.Length > 0 ? args[0] : "../python-code-for-analysis/script.py";
+        string filePath = args.Length > 0 ? args[0] : "./python-code-for-analysis/script.py";
         string code = ReadPythonFile(filePath);
 
         if (!string.IsNullOrWhiteSpace(code))
