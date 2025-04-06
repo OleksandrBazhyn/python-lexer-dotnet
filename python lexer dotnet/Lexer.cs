@@ -52,7 +52,7 @@ namespace python_lexer_dotnet
             }
         }
 
-        private Token RecognizeNumber()
+        public Token RecognizeNumber()
         {
             int start = pos;
 
@@ -90,7 +90,7 @@ namespace python_lexer_dotnet
             return new Token(input.Substring(start, pos - start), TokenType.NUMBER);
         }
 
-        private Token RecognizeString()
+        public Token RecognizeString()
         {
             char quote = input[pos];
             int start = pos++;
@@ -120,7 +120,7 @@ namespace python_lexer_dotnet
             return new Token(input.Substring(start, pos - start), TokenType.STRING);
         }
 
-        private Token RecognizeIdentifier()
+        public Token RecognizeIdentifier()
         {
             int start = pos;
             while (pos < input.Length && (char.IsLetterOrDigit(input[pos]) || input[pos] == '_' || input[pos] == '.')) pos++;
@@ -133,14 +133,14 @@ namespace python_lexer_dotnet
             return new Token(lexeme, TokenType.IDENTIFIER);
         }
 
-        private Token RecognizeComment()
+        public Token RecognizeComment()
         {
             int start = pos;
             while (pos < input.Length && input[pos] != '\n') pos++;
             return new Token(input.Substring(start, pos - start), TokenType.COMMENT);
         }
 
-        private Token RecognizeOperatorOrPunctuation()
+        public Token RecognizeOperatorOrPunctuation()
         {
             return new Token(input[pos++].ToString(), TokenType.OPERATOR);
         }

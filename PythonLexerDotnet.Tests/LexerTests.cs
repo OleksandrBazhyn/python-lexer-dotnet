@@ -100,5 +100,21 @@ namespace Tests
         {
             Assert.Throws<System.ArgumentNullException>(() => new Lexer(null));
         }
+
+        [TestCase("0x11abj")]
+        [TestCase("0x11ab#")]
+        [TestCase("0x")]
+        [TestCase("123abc")]
+        [TestCase("12.34.56")]
+        [TestCase("123.")]
+        [TestCase("!@#$")]
+        public void TestUnrecognizedTokens(string invalidToken)
+        {
+            var lexer = new Lexer(invalidToken);
+            var token = lexer.RecognizeNumber();
+
+            Assert.AreEqual(TokenType.ERROR, token.Type);
+        }
+
     }
 }
