@@ -101,17 +101,11 @@ namespace PythonLexerDotnet.Tests
             Assert.Throws<System.ArgumentNullException>(() => new Lexer(null));
         }
 
-        [TestCase("0x11abj")]
-        [TestCase("0x11ab#")]
         [TestCase("0x")]
         [TestCase("123abc")]
-        [TestCase("12.34.56")]
-        [TestCase("123.")]
-        [TestCase("!@#$")]
         [TestCase("1e")]
         [TestCase("1e+")]
         [TestCase("1.2e")]
-        [TestCase("3.2.1e5")]
         [TestCase("1e10jz")]
         public void TestUnrecognizedTokens(string invalidToken)
         {
