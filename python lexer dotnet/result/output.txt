@@ -169,15 +169,7 @@ Error: Unrecognized token '=' at position 1225
 <bot.infinity_polling, IDENTIFIER>
 <(, OPERATOR>
 <), OPERATOR>
-<ii, IDENTIFIER>
-Error: Unrecognized token '=' at position 1387
-<2.11, NUMBER>
-<x, IDENTIFIER>
-Error: Unrecognized token '=' at position 1397
-<0x111ab, NUMBER>
-<a, IDENTIFIER>
-Error: Unrecognized token '=' at position 1410
-<17, NUMBER>
-<o, IDENTIFIER>
-Error: Unrecognized token '=' at position 1418
-Error: Unrecognized token '0x11abj' at position 1426
+<# ii = 2.11, COMMENT>
+<# x = 0x111ab, COMMENT>
+<# a = 17, COMMENT>
+<# o = 0x11abj, COMMENT>

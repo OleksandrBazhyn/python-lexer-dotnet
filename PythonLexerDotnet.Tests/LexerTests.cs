@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using python_lexer_dotnet;
 
-namespace Tests
+namespace PythonLexerDotnet.Tests
 {
     [TestFixture]
     public class LexerTests
@@ -108,6 +108,11 @@ namespace Tests
         [TestCase("12.34.56")]
         [TestCase("123.")]
         [TestCase("!@#$")]
+        [TestCase("1e")]
+        [TestCase("1e+")]
+        [TestCase("1.2e")]
+        [TestCase("3.2.1e5")]
+        [TestCase("1e10jz")]
         public void TestUnrecognizedTokens(string invalidToken)
         {
             var lexer = new Lexer(invalidToken);
@@ -115,6 +120,7 @@ namespace Tests
 
             Assert.AreEqual(TokenType.ERROR, token.Type);
         }
+
 
     }
 }
