@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "python lexer dotnet": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
