@@ -115,6 +115,17 @@ namespace PythonLexerDotnet.Tests
             Assert.AreEqual(TokenType.ERROR, token.Type);
         }
 
+        [Test]
+        public void TestRecognizesDottedIdentifier()
+        {
+            var lex = new Lexer("module.var");
+            Token token = lex.GetNextToken();
+
+            Assert.AreEqual("module.var", token.Lexeme);
+            Assert.AreEqual(TokenType.IDENTIFIER, token.Type);
+            Assert.That(token.Lexeme.Contains("."));
+            Assert.That(token.Type, Is.Not.EqualTo(TokenType.ERROR));
+        }
 
     }
 }

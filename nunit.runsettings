@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <!-- Директорія для результатів -->
+    <ResultsDirectory>TestResults</ResultsDirectory>
+
+    <!-- Параметри запуску -->
+    <TargetPlatform>x64</TargetPlatform>
+    <TargetFrameworkVersion>net8.0</TargetFrameworkVersion>
+    <MaxCpuCount>4</MaxCpuCount>
+    <TestSessionTimeout>60000</TestSessionTimeout>
+    <DisableAppDomain>true</DisableAppDomain>
+    <CollectSourceInformation>true</CollectSourceInformation>
+  </RunConfiguration>
+
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <!-- Збір покриття коду -->
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <OutputDirectory>TestResults\Coverage</OutputDirectory>
+          <Include>
+            <ModulePath>.*</ModulePath>
+          </Include>
+          <ExcludeByAttribute>
+            <Exclude>CompilerGeneratedAttribute</Exclude>
+            <Exclude>GeneratedCodeAttribute</Exclude>
+          </ExcludeByAttribute>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
