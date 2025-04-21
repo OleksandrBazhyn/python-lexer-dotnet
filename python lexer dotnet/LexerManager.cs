@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.IO;
 
 namespace python_lexer_dotnet
 {
@@ -13,7 +14,7 @@ namespace python_lexer_dotnet
         {
             this.lexer = lexer ?? throw new ArgumentNullException(nameof(lexer));
         }
-        public string TokenTypeToString(TokenType type) => type.ToString();
+        private string TokenTypeToString(TokenType type) => type.ToString();
         public string ReadPythonFile(string filePath)
         {
             try
@@ -26,7 +27,7 @@ namespace python_lexer_dotnet
                 return "";
             }
         }
-        public void WriteToFile(string filename, string content)
+        private void WriteToFile(string filename, string content)
         {
             try
             {
@@ -45,7 +46,12 @@ namespace python_lexer_dotnet
         }
         public void ProcessCode(string code)
         {
-            ILexer lexer = new Lexer(code);
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                Console.Error.WriteLine("Error: No code to process.");
+                return;
+            }
+            lexer.GetCodeForAnalyze(code);
             Token token;
             StringBuilder result = new();
 

@@ -8,7 +8,7 @@ namespace python_lexer_dotnet
 {
     public class Lexer : ILexer
     {
-        private readonly string input;
+        private string input;
         private int pos;
         private readonly Dictionary<string, TokenType> reservedWords = new()
         {
@@ -48,6 +48,16 @@ namespace python_lexer_dotnet
         {
             input = string.Empty;
             pos = 0;
+        }
+        public bool GetCodeForAnalyze(string code)
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                return false;
+            }
+            input = code;
+            pos = 0;
+            return true;
         }
 
         private void SkipWhitespace()
