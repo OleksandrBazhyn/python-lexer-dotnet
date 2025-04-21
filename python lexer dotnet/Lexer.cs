@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace python_lexer_dotnet
 {
-    public class Lexer
+    public class Lexer : ILexer
     {
         private readonly string input;
         private int pos;
@@ -41,6 +41,12 @@ namespace python_lexer_dotnet
                 throw new ArgumentNullException(nameof(input));
             }
             this.input = input;
+            pos = 0;
+        }
+
+        public Lexer()
+        {
+            input = string.Empty;
             pos = 0;
         }
 
