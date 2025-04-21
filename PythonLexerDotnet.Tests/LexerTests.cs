@@ -19,8 +19,8 @@ namespace PythonLexerDotnet.Tests
         public void TestRecognizesReservedWord()
         {
             Token token = lexer.GetNextToken();
-            Assert.AreEqual("if", token.Lexeme);
-            Assert.AreEqual(TokenType.RESERVED, token.Type);
+            Assert.That(token.Lexeme, Is.EqualTo("if"));
+            Assert.That(token.Type, Is.EqualTo(TokenType.RESERVED));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace PythonLexerDotnet.Tests
         {
             lexer.GetNextToken(); // skip "if"
             Token token = lexer.GetNextToken();
-            Assert.AreEqual("123", token.Lexeme);
+            Assert.That(token.Lexeme, Is.EqualTo("123"));
             Assert.That(token.Type, Is.EqualTo(TokenType.NUMBER));
         }
 
@@ -38,7 +38,7 @@ namespace PythonLexerDotnet.Tests
             lexer.GetNextToken(); // skip "if"
             lexer.GetNextToken(); // skip "123"
             Token token = lexer.GetNextToken(); // 0x1G
-            Assert.AreEqual("0x1G", token.Lexeme);
+            Assert.That(token.Lexeme, Is.EqualTo("0x1G"));
             Assert.That(token.Type, Is.EqualTo(TokenType.ERROR));
         }
 
@@ -59,7 +59,7 @@ namespace PythonLexerDotnet.Tests
             for (int i = 0; i < 4; i++) lexer.GetNextToken(); // skip till #
             Token token = lexer.GetNextToken();
             StringAssert.StartsWith("#", token.Lexeme);
-            Assert.AreEqual(TokenType.COMMENT, token.Type);
+            Assert.That(token.Type, Is.EqualTo(TokenType.COMMENT));
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace PythonLexerDotnet.Tests
             var lexer = new Lexer(invalidToken);
             var token = lexer.RecognizeNumber();
 
-            Assert.AreEqual(TokenType.ERROR, token.Type);
+            Assert.That(token.Type, Is.EqualTo(TokenType.ERROR));
         }
 
         [Test]
@@ -121,8 +121,8 @@ namespace PythonLexerDotnet.Tests
             var lex = new Lexer("module.var");
             Token token = lex.GetNextToken();
 
-            Assert.AreEqual("module.var", token.Lexeme);
-            Assert.AreEqual(TokenType.IDENTIFIER, token.Type);
+            Assert.That(token.Lexeme, Is.EqualTo("module.var"));
+            Assert.That(token.Type, Is.EqualTo(TokenType.IDENTIFIER));
             Assert.That(token.Lexeme.Contains("."));
             Assert.That(token.Type, Is.Not.EqualTo(TokenType.ERROR));
         }
