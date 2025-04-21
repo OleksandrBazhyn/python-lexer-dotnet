@@ -15,8 +15,8 @@ public class TokenTests
     {
         token = new Token("test", TokenType.IDENTIFIER);
 
-        Assert.AreEqual("test", token.Lexeme);
-        Assert.AreEqual(TokenType.IDENTIFIER, token.Type);
+        Assert.That(token.Lexeme, Is.EqualTo("test"));
+        Assert.That(token.Type, Is.EqualTo(TokenType.IDENTIFIER));
     }
 
     [Test]
@@ -24,8 +24,8 @@ public class TokenTests
     {
         token = new Token("123", TokenType.NUMBER);
 
-        Assert.AreEqual("123", token.Lexeme);
-        Assert.AreEqual(TokenType.NUMBER, token.Type);
+        Assert.That(token.Lexeme, Is.EqualTo("123"));
+        Assert.That(token.Type, Is.EqualTo(TokenType.NUMBER));
     }
 
     [Test]
@@ -33,8 +33,8 @@ public class TokenTests
     {
         token = new Token("\"hello\"", TokenType.STRING);
 
-        Assert.AreEqual("\"hello\"", token.Lexeme);
-        Assert.AreEqual(TokenType.STRING, token.Type);
+        Assert.That(token.Lexeme, Is.EqualTo("\"hello\""));
+        Assert.That(token.Type, Is.EqualTo(TokenType.STRING));
     }
 
     [Test]
@@ -42,7 +42,7 @@ public class TokenTests
     {
         token = new Token("if", TokenType.RESERVED);
 
-        Assert.AreEqual("if", token.Lexeme);
-        Assert.AreEqual(TokenType.RESERVED, token.Type);
+        Assert.That(token.Lexeme, Is.EqualTo("if"));
+        Assert.That(token.Type, Is.EqualTo(TokenType.RESERVED));
     }
 }
