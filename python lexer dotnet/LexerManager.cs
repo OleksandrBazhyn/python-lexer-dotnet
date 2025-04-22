@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.IO;
+using System;
 
 namespace python_lexer_dotnet
 {
@@ -15,7 +16,7 @@ namespace python_lexer_dotnet
             this.lexer = lexer ?? throw new ArgumentNullException(nameof(lexer));
         }
         private string TokenTypeToString(TokenType type) => type.ToString();
-        public string ReadPythonFile(string filePath)
+        public string ReadCodeFile(string filePath)
         {
             try
             {
@@ -51,27 +52,35 @@ namespace python_lexer_dotnet
                 Console.Error.WriteLine("Error: No code to process.");
                 return;
             }
-            lexer.GetCodeForAnalyze(code);
-            Token token;
-            StringBuilder result = new();
-
-            while ((token = lexer.GetNextToken()).Type != TokenType.END)
+            try
             {
-                if (token.Type == TokenType.ERROR)
-                {
-                    string errorMsg = $"Error: Unrecognized token '{token.Lexeme}' at position {lexer.GetPosition()}";
-                    Console.Error.WriteLine(errorMsg);
-                    result.AppendLine(errorMsg);
-                }
-                else
-                {
-                    string output = $"<{token.Lexeme}, {TokenTypeToString(token.Type)}>";
-                    Console.WriteLine(output);
-                    result.AppendLine(output);
-                }
-            }
+                lexer.GetCodeForAnalyze(code);
+                Token token;
+                StringBuilder result = new();
 
-            WriteToFile("./result/output.txt", result.ToString());
+                while ((token = lexer.GetNextToken()).Type != TokenType.END)
+                {
+                    if (token.Type == TokenType.ERROR)
+                    {
+                        string errorMsg = $"Error: Unrecognized token '{token.Lexeme}' at position {lexer.GetPosition()}";
+                        Console.Error.WriteLine(errorMsg);
+                        result.AppendLine(errorMsg);
+                    }
+                    else
+                    {
+                        string output = $"<{token.Lexeme}, {TokenTypeToString(token.Type)}>";
+                        Console.WriteLine(output);
+                        result.AppendLine(output);
+                    }
+                }
+
+                WriteToFile("./result/output.txt", result.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Error: Failed to analyze code. {ex.Message}");
+                return;
+            }
         }
     }
 }

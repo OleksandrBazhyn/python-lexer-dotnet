@@ -7,7 +7,7 @@
         {
             LexerManager lexerManager = new LexerManager(new Lexer());
             string filePath = args.Length > 0 ? args[0] : "./python-code-for-analysis/script.py";
-            string code = lexerManager.ReadPythonFile(filePath);
+            string code = lexerManager.ReadCodeFile(filePath);
 
             if (!string.IsNullOrWhiteSpace(code))
             {
