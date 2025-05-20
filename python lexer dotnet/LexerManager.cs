@@ -9,7 +9,7 @@ namespace python_lexer_dotnet
         private readonly ILexer lexer;
         public LexerManager()
         {
-            lexer = new Lexer();
+            this.lexer = new Lexer();
         }
         public LexerManager(ILexer lexer)
         {
