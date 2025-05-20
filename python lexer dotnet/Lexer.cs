@@ -36,10 +36,7 @@ namespace python_lexer_dotnet
 
         public Lexer(string input)
         {
-            if (input == null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
+            ArgumentNullException.ThrowIfNull(input, nameof(input));
             this.input = input;
             pos = 0;
         }
@@ -72,38 +69,95 @@ namespace python_lexer_dotnet
         {
             int start = pos;
 
-            if (input[pos] == '0' && pos + 1 < input.Length && char.ToLower(input[pos + 1]) == 'x')
+            if (IsHexadecimalNumber())
             {
-                pos += 2;
-                bool hasHexDigits = false;
-                while (pos < input.Length && Uri.IsHexDigit(input[pos]))
-                {
-                    hasHexDigits = true;
-                    pos++;
-                }
-                if (!hasHexDigits || (pos < input.Length && char.IsLetterOrDigit(input[pos])))
-                {
-                    while (pos < input.Length && char.IsLetterOrDigit(input[pos])) pos++;
-                    return new Token(input.Substring(start, pos - start), TokenType.ERROR);
-                }
-                return new Token(input.Substring(start, pos - start), TokenType.NUMBER);
+                return ProcessHexadecimalNumber(start);
             }
 
-            while (pos < input.Length && char.IsDigit(input[pos])) pos++;
+            ProcessDigits();
 
-            if (pos < input.Length && input[pos] == '.')
+            if (IsDecimalPoint())
             {
+                ProcessDecimalPart();
+            }
+
+            if (IsInvalidTrailingCharacter())
+            {
+                return ProcessInvalidNumber(start);
+            }
+
+            return new Token(input.Substring(start, pos - start), TokenType.NUMBER);
+        }
+
+        private bool IsHexadecimalNumber()
+        {
+            return input[pos] == '0' && pos + 1 < input.Length && char.ToLower(input[pos + 1]) == 'x';
+        }
+
+        private Token ProcessHexadecimalNumber(int start)
+        {
+            pos += 2;
+            bool hasHexDigits = false;
+
+            while (pos < input.Length && Uri.IsHexDigit(input[pos]))
+            {
+                hasHexDigits = true;
                 pos++;
-                while (pos < input.Length && char.IsDigit(input[pos])) pos++;
             }
 
-            if (pos < input.Length && char.IsLetterOrDigit(input[pos]))
+            if (!hasHexDigits || IsInvalidHexCharacter())
             {
-                while (pos < input.Length && char.IsLetterOrDigit(input[pos])) pos++;
+                SkipInvalidCharacters();
                 return new Token(input.Substring(start, pos - start), TokenType.ERROR);
             }
 
             return new Token(input.Substring(start, pos - start), TokenType.NUMBER);
+        }
+
+        private void ProcessDigits()
+        {
+            while (pos < input.Length && char.IsDigit(input[pos]))
+            {
+                pos++;
+            }
+        }
+
+        private bool IsDecimalPoint()
+        {
+            return pos < input.Length && input[pos] == '.';
+        }
+
+        private void ProcessDecimalPart()
+        {
+            pos++;
+            while (pos < input.Length && char.IsDigit(input[pos]))
+            {
+                pos++;
+            }
+        }
+
+        private bool IsInvalidTrailingCharacter()
+        {
+            return pos < input.Length && char.IsLetterOrDigit(input[pos]);
+        }
+
+        private Token ProcessInvalidNumber(int start)
+        {
+            SkipInvalidCharacters();
+            return new Token(input.Substring(start, pos - start), TokenType.ERROR);
+        }
+
+        private bool IsInvalidHexCharacter()
+        {
+            return pos < input.Length && char.IsLetterOrDigit(input[pos]);
+        }
+
+        private void SkipInvalidCharacters()
+        {
+            while (pos < input.Length && char.IsLetterOrDigit(input[pos]))
+            {
+                pos++;
+            }
         }
 
         public Token RecognizeString()
@@ -142,9 +196,9 @@ namespace python_lexer_dotnet
             while (pos < input.Length && (char.IsLetterOrDigit(input[pos]) || input[pos] == '_' || input[pos] == '.')) pos++;
 
             string lexeme = input.Substring(start, pos - start);
-            if (reservedWords.ContainsKey(lexeme))
+            if (reservedWords.TryGetValue(lexeme, out TokenType tokenType))
             {
-                return new Token(lexeme, reservedWords[lexeme]);
+                return new Token(lexeme, tokenType);
             }
             return new Token(lexeme, TokenType.IDENTIFIER);
         }
